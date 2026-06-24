@@ -18,7 +18,11 @@ const connectDB = async () => {
     
     try {
       const { MongoMemoryServer } = require('mongodb-memory-server');
-      const mongoServer = await MongoMemoryServer.create();
+      const mongoServer = await MongoMemoryServer.create({
+        binary: {
+          version: '7.0.15'
+        }
+      });
       const uri = mongoServer.getUri();
       
       const conn = await mongoose.connect(uri);
